@@ -1,6 +1,10 @@
 spring:
   application:
     name: photo-app-user-service
+  h2:
+    console:
+      settings:
+        web-allow-others: true
 
 server:
   port: ${PORT:0}

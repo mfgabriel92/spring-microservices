@@ -1,6 +1,6 @@
 spring:
   application:
-    name: photo-app-users-service
+    name: photo-app-account-service
 
 server:
   port: 0

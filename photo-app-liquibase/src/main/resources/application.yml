@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: photo-app-liquibase
+  datasource:
+    driver-class-name: liquibase.ext.mongodb.database.MongoClientDriver
+    url: mongodb://localhost:27017/photo-app
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml

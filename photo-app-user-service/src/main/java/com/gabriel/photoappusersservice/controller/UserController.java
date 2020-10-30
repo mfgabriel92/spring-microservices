@@ -1,6 +1,7 @@
 package com.gabriel.photoappusersservice.controller;
 
 import com.gabriel.photoappusersservice.model.User;
+import com.gabriel.photoappusersservice.shared.UserRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,8 +15,8 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class UserController {
     @PostMapping
-    public User create(@Valid @RequestBody User user) {
-        return user;
+    public User create(@Valid @RequestBody UserRequest user) {
+        return null;
     }
 }
 

@@ -3,9 +3,8 @@ spring:
     name: photo-app-liquibase
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
-    url: jdbc:mysql://localhost:3306/photo_app
-    user: root
-    password: root
   datasource:
     url: jdbc:mysql://localhost:3306/photo_app
     driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root

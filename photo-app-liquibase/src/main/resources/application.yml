@@ -1,8 +1,11 @@
 spring:
   application:
     name: photo-app-liquibase
-  datasource:
-    driver-class-name: liquibase.ext.mongodb.database.MongoClientDriver
-    url: mongodb://localhost:27017/photo-app
   liquibase:
     change-log: classpath:db/changelog/db.changelog-master.xml
+    url: jdbc:mysql://localhost:3306/photo_app
+    user: root
+    password: root
+  datasource:
+    url: jdbc:mysql://localhost:3306/photo_app
+    driver-class-name: com.mysql.jdbc.Driver

@@ -1,8 +1,16 @@
 package com.gabriel.photoappusersservice.service;
 
 import com.gabriel.photoappusersservice.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.gabriel.photoappusersservice.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface UserService extends JpaRepository<User, Integer> { }
+@RequiredArgsConstructor
+public class UserService {
+    private final UserRepository repository;
+    
+    public User save(User user) {
+        return repository.save(user);
+    }
+}

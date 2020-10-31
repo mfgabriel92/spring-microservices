@@ -1,10 +1,11 @@
 spring:
   application:
     name: photo-app-user-service
-  h2:
-    console:
-      settings:
-        web-allow-others: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/photo_app
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root
 
 server:
   port: ${PORT:0}

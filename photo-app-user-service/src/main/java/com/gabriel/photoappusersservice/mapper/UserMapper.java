@@ -26,4 +26,8 @@ public class UserMapper {
     public List<UserResponse> toCollectionModel(List<User> users) {
         return users.stream().map(this::toModel).collect(Collectors.toList());
     }
+    
+    public void copyToDomainObject(UserRequest request, User user) {
+        mapper.map(request, user);
+    }
 }

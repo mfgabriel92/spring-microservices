@@ -1,5 +1,6 @@
 package com.gabriel.photoappusersservice.service;
 
+import com.gabriel.photoappusersservice.exception.UserNotFoundException;
 import com.gabriel.photoappusersservice.model.User;
 import com.gabriel.photoappusersservice.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,5 +19,16 @@ public class UserService {
     public User save(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
+    }
+    
+    public User findOrFail(Integer id) {
+        return repository
+            .findById(id)
+            .orElseThrow(() -> new UserNotFoundException("User not found"));
+    }
+    
+    public void findAndDeleteOrFail(Integer id) {
+        findOrFail(id);
+        repository.deleteById(id);
     }
 }

@@ -7,7 +7,8 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum Permission {
     USER_READ("USER:READ"),
-    USER_WRITE("USER:WRITE");
+    USER_WRITE("USER:WRITE"),
+    USER_DELETE("USER:DELETE");
     
-    private final String name;
+    private final String permission;
 }

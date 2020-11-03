@@ -21,14 +21,13 @@ public class UserService {
         return repository.save(user);
     }
     
-    public User findOrFail(Integer id) {
+    public User findOrFail(String code) {
         return repository
-            .findById(id)
+            .findByCode(code)
             .orElseThrow(() -> new UserNotFoundException("User not found"));
     }
     
-    public void findAndDeleteOrFail(Integer id) {
-        findOrFail(id);
-        repository.deleteById(id);
+    public void findAndDeleteOrFail(String code) {
+        repository.delete(findOrFail(code));
     }
 }

@@ -43,16 +43,16 @@ public class UserController {
         return mapper.toModel(service.save(user));
     }
     
-    @PutMapping("{id}")
-    public UserResponse save(@PathVariable Integer id, @Valid @RequestBody UserRequest userRequest) {
-        User user = service.findOrFail(id);
+    @PutMapping("{code}")
+    public UserResponse save(@PathVariable String code, @Valid @RequestBody UserRequest userRequest) {
+        User user = service.findOrFail(code);
         mapper.copyToDomainObject(userRequest, user);
         return mapper.toModel(service.save(user));
     }
     
-    @DeleteMapping("{id}")
+    @DeleteMapping("{code}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer id) {
-        service.findAndDeleteOrFail(id);
+    public void delete(@PathVariable String code) {
+        service.findAndDeleteOrFail(code);
     }
 }

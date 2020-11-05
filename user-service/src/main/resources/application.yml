@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: user-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/photo_app
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
+
+server:
+  port: ${PORT:0}
+
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka

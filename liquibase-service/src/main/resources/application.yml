@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: liquibase-service
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+  datasource:
+    url: jdbc:postgresql://localhost:5432/photo_app
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root

@@ -3,24 +3,27 @@
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
-    <changeSet id="20201029215628" author="gabriel">
-        <createTable tableName="users">
-            <column name="id" type="java.sql.Types.INTEGER" autoIncrement="true">
-                <constraints nullable="false" primaryKey="true"/>
-            </column>
-            <column name="code" type="VARCHAR(255)">
+    <changeSet id="00008" author="gabriel">
+        <createTable tableName="oauth_access_token">
+            <column name="token_id" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="first_name" type="VARCHAR(255)">
+            <column name="token" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
-            <column name="last_name" type="VARCHAR(255)">
+            <column name="authentication_id" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="email" type="VARCHAR(255)">
-                <constraints nullable="false" unique="true"/>
+            <column name="username" type="VARCHAR">
+                <constraints nullable="false"/>
             </column>
-            <column name="password" type="VARCHAR(255)">
+            <column name="client_id" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authentication" type="VARCHAR">
+                <constraints nullable="false"/>
+            </column>
+            <column name="refresh_token" type="VARCHAR">
                 <constraints nullable="false"/>
             </column>
         </createTable>

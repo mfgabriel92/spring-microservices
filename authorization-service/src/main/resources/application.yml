@@ -2,10 +2,15 @@ spring:
   application:
     name: authorization-service
   datasource:
-    url: jdbc://postgres://localhost:5432/spring_microservices
+    url: jdbc:postgresql://localhost:5432/spring_microservices
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password: root
-    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
 
 server:
   port: ${PORT:0}

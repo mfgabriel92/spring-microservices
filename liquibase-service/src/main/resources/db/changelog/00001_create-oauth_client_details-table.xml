@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="00001" author="gabriel">
         <createTable tableName="oauth_client_details">
-            <column name="client_id" type="INTEGER" autoIncrement="true">
+            <column name="client_id" type="VARCHAR(256)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="client_secret" type="VARCHAR(256)">
@@ -15,10 +15,11 @@
             <column name="scope" type="VARCHAR(256)"/>
             <column name="access_token_validity" type="INT"/>
             <column name="refresh_token_validity" type="INT"/>
-            <column name="resource_ids" type="VARCHAR(1024)"/>
-            <column name="authorized_grant_types" type="VARCHAR(1024)"/>
-            <column name="authorities" type="VARCHAR(1024)"/>
-            <column name="auto_approve" type="VARCHAR(1024)"/>
+            <column name="resource_ids" type="VARCHAR(256)"/>
+            <column name="authorized_grant_types" type="VARCHAR(256)"/>
+            <column name="authorities" type="VARCHAR(256)"/>
+            <column name="additional_information" type="VARCHAR(4096)"/>
+            <column name="autoapprove" type="VARCHAR(256)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

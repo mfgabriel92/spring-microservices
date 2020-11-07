@@ -12,3 +12,6 @@ eureka:
 
 zuul:
   sensitiveHeaders: Cookie,Set-Cookie
+
+ribbon:
+  ReadTimeout: 10000

@@ -29,13 +29,13 @@
             <column name="enabled" type="TINYINT" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
-            <column name="account_expired" type="TINYINT" defaultValue="0">
+            <column name="is_account_non_expired" type="TINYINT" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
-            <column name="credentials_expired" type="TINYINT" defaultValue="0">
+            <column name="is_credentials_non_expired" type="TINYINT" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
-            <column name="locked" type="TINYINT" defaultValue="0">
+            <column name="is_account_nnn_locked" type="TINYINT" defaultValue="1">
                 <constraints nullable="false"/>
             </column>
         </createTable>

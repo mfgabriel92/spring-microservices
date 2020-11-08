@@ -16,12 +16,12 @@ public class AuthUser extends User implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> grantedAuthorities = new ArrayList<>();
-        
+
         super.getRoles().forEach(role -> {
             grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
             role.getPermissions().forEach(permission -> grantedAuthorities.add(new SimpleGrantedAuthority(permission.getName())));
         });
-        
+
         return grantedAuthorities;
     }
     

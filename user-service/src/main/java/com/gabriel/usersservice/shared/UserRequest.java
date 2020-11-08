@@ -18,6 +18,10 @@ public class UserRequest {
     @Size(min = 3, message = "Minimum of 3 characters")
     private String lastName;
     
+    @NotBlank(message = "Username is required")
+    @Size(min = 3, message = "Minimum of 3 characters")
+    private String username;
+    
     @NotBlank(message = "E-mail is required")
     @Email(message = "E-mail is invalid")
     private String email;

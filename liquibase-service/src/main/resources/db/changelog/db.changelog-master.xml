@@ -2,13 +2,12 @@
 <databaseChangeLog
     xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
     <include file="db/changelog/00001_create-oauth_client_details-table.xml"/>
     <include file="db/changelog/00002_create-roles-table.xml"/>
-    <include file="db/changelog/00003_create-permissions-table.xml"/>
+    <include file="db/changelog/00003_create-authorities-table.xml"/>
     <include file="db/changelog/00004_create-users-table.xml"/>
-    <include file="db/changelog/00005_create-table-permissions_roles.xml"/>
+    <include file="db/changelog/00005_create-table-roles_authorities.xml"/>
     <include file="db/changelog/00006_create-table-users_roles.xml"/>
     <include file="db/changelog/00007_create-table-oauth_client_token.xml"/>
     <include file="db/changelog/00008_create-table-oauth_access_token.xml"/>

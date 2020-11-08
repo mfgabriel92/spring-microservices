@@ -25,6 +25,8 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Role implements Serializable {
+    private final static Long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -33,9 +35,9 @@ public class Role implements Serializable {
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-        name = "permissions_roles",
+        name = "roles_authorities",
         joinColumns = @JoinColumn(name = "role_id"),
-        inverseJoinColumns = @JoinColumn(name = "permission_id")
+        inverseJoinColumns = @JoinColumn(name = "authority_id")
     )
-    private Set<Permission> permissions = new HashSet<>();
+    private Set<Authority> permissions = new HashSet<>();
 }

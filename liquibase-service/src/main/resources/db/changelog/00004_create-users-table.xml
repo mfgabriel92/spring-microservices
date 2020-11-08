@@ -26,18 +26,23 @@
             <column name="password" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="enabled" type="TINYINT" defaultValue="0">
+            <column name="enabled" type="TINYINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_account_non_expired" type="TINYINT" defaultValue="1">
+            <column name="is_account_non_expired" type="TINYINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_credentials_non_expired" type="TINYINT" defaultValue="1">
+            <column name="is_credentials_non_expired" type="TINYINT">
                 <constraints nullable="false"/>
             </column>
-            <column name="is_account_nnn_locked" type="TINYINT" defaultValue="1">
+            <column name="is_account_non_locked" type="TINYINT">
                 <constraints nullable="false"/>
             </column>
         </createTable>
+
+        <addDefaultValue tableName="users" columnName="enabled" defaultValue="1"/>
+        <addDefaultValue tableName="users" columnName="is_account_non_expired" defaultValue="1"/>
+        <addDefaultValue tableName="users" columnName="is_credentials_non_expired" defaultValue="1"/>
+        <addDefaultValue tableName="users" columnName="is_account_non_locked" defaultValue="1"/>
     </changeSet>
 </databaseChangeLog>

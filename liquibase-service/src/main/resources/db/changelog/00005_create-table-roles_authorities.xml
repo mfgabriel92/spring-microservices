@@ -4,26 +4,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
     <changeSet id="00005" author="gabriel">
-        <createTable tableName="permissions_roles">
-            <column name="permission_id" type="INTEGER">
+        <createTable tableName="roles_authorities">
+            <column name="role_id" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
-            <column name="role_id" type="INTEGER">
+            <column name="authority_id" type="INTEGER">
                 <constraints nullable="false"/>
             </column>
         </createTable>
         <addForeignKeyConstraint
-            baseTableName="permissions_roles"
-            baseColumnNames="permission_id"
-            constraintName="fk_permissions_roles_permissions"
-            referencedTableName="permissions"
+            baseTableName="roles_authorities"
+            baseColumnNames="role_id"
+            constraintName="fk_authorities_roles_role"
+            referencedTableName="roles"
             referencedColumnNames="id"
         />
         <addForeignKeyConstraint
-            baseTableName="permissions_roles"
-            baseColumnNames="role_id"
-            constraintName="fk_permissions_roles_roles"
-            referencedTableName="roles"
+            baseTableName="roles_authorities"
+            baseColumnNames="authority_id"
+            constraintName="fk_authorities_roles_authority"
+            referencedTableName="authorities"
             referencedColumnNames="id"
         />
     </changeSet>

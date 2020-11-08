@@ -37,6 +37,8 @@ public class User implements Serializable {
         this.roles = user.getRoles();
     }
     
+    private final static Long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

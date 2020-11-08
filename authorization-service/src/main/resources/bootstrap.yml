@@ -2,7 +2,7 @@ spring:
   profiles:
     active: dev
   application:
-    name: eureka-discovery-service
+    name: authorization-service
   cloud:
     config:
       uri: http://localhost:8765/config-service

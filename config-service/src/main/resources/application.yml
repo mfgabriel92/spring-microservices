@@ -8,6 +8,8 @@ spring:
           uri: https://github.com/mfgabriel92/spring-microservices
           search-paths:
             - 'config-service/src/main/resources/*service/'
+      discovery:
+        enabled: true
 
 server:
   port: ${PORT:0}

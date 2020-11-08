@@ -2,7 +2,7 @@ spring:
   application:
     name: user-service
   datasource:
-    url: jdbc:postgresql://localhost:5432/photo_app
+    url: jdbc:postgresql://localhost:5432/spring_microservices
     driver-class-name: org.postgresql.Driver
     username: postgres
     password: root

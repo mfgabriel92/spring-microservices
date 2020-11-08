@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: authorization-service
   datasource:
     url: jdbc:postgresql://localhost:5432/spring_microservices
     driver-class-name: org.postgresql.Driver

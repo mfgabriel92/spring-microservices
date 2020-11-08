@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -17,7 +18,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Entity
 @Table(name = "permissions")
-public class Permission {
+public class Permission implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

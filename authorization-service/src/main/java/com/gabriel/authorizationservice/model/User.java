@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -21,7 +22,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
     public User(User user) {
         this.code = user.getCode();
         this.firstName = user.getFirstName();

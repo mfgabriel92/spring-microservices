@@ -3,7 +3,13 @@ spring:
     active: dev
   application:
     name: zuul-gateway-service
-
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          introspection-uri: 'http://localhost:8765/authorization-service/oauth/check_token'
+          client-id: 'client'
+          client-secret: 'pass'
 server:
   port: 8765
 

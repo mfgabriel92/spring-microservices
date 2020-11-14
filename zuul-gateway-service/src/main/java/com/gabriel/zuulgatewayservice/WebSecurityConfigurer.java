@@ -9,6 +9,8 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
+    public static final String CONFIG_URI = "/config-service/**";
+    public static final String OAUTH_URI = "/authorization-service/**";
     public static final String USERS_URI = "/user-service/api/v1/users/**";
     
     @Override
@@ -17,9 +19,11 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
             .cors().and()
             .csrf().disable()
             .formLogin().disable()
-            .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
-                .antMatchers("/authorization-service/**").permitAll();
+                .antMatchers(USERS_URI).hasRole("ADMIN")
+                .antMatchers(CONFIG_URI, OAUTH_URI).permitAll()
+                .anyRequest().authenticated().and()
+            .oauth2ResourceServer().opaqueToken();
     }
 }

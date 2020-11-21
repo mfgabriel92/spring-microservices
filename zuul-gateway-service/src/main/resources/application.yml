@@ -6,10 +6,6 @@ spring:
   security:
     oauth2:
       resourceserver:
-        opaquetoken:
-          introspection-uri: 'http://localhost:8765/authorization-service/oauth/check_token'
-          client-id: 'client'
-          client-secret: 'pass'
         jwt:
           public-key-location: classpath:keystore/sms-pub.pem
 server:

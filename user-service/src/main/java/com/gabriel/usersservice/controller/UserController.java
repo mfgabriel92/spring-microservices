@@ -6,6 +6,7 @@ import com.gabriel.usersservice.repository.UserRepository;
 import com.gabriel.usersservice.service.UserService;
 import com.gabriel.usersservice.shared.UserRequest;
 import com.gabriel.usersservice.shared.UserResponse;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,10 +26,13 @@ import java.util.List;
 @RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UserController {
+    @NonNull
     private final UserMapper mapper;
     
+    @NonNull
     private final UserRepository repository;
     
+    @NonNull
     private final UserService service;
     
     @GetMapping

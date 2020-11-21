@@ -3,6 +3,7 @@ package com.gabriel.usersservice.mapper;
 import com.gabriel.usersservice.model.User;
 import com.gabriel.usersservice.shared.UserRequest;
 import com.gabriel.usersservice.shared.UserResponse;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class UserMapper {
+    @NonNull
     private final ModelMapper mapper;
     
     public UserResponse toModel(User model) {

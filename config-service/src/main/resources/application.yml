@@ -10,7 +10,7 @@ spring:
             - 'config-service/src/main/resources/*service/'
 
 server:
-  port: ${PORT:0}
+  port: 0
 
 eureka:
   client:

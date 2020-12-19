@@ -1,44 +1,75 @@
 version: '3'
+
 services:
-  eureka-discovery:
-    image: eureka-discovery-service:0.0.1
-    ports:
-      - 8761:8761
-  zuul-gateway:
-    image: zuul-gateway-service:0.0.1
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka-discovery:8761/eureka
-    depends_on:
-      - eureka-discovery
-    ports:
-      - 8765:8765
-  config:
-    image: config-service:0.0.1
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka-discovery:8761/eureka
-    depends_on:
-      - eureka-discovery
-    ports:
-      - 1000:1000
   postgres:
-    image: postgres
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
       POSTGRES_DB: spring_microservices
+    networks:
+      - sms
+
+  eureka-discovery-service:
+    container_name: eureka-discovery-service
+    image: openjdk:11.0.9.1-jdk
     ports:
-      - 5432:5432
-  authorization-service:
-    image: authorization-service:0.0.1
-    environment:
-      - eureka.client.serviceUrl.defaultZone=http://eureka-discovery:8761/eureka
-      - spring.cloud.config.uri=http://zuul-gateway:8765/config-service
+      - 8761:8761
+    volumes:
+      - ./eureka-discovery-service:/usr/src/app
+    working_dir: /usr/src/app
+    command: ./mvnw spring-boot:run
+    networks:
+      - sms
+
+  zuul-gateway-service:
+    container_name: zuul-gateway-service
+    image: openjdk:11.0.9.1-jdk
+    ports:
+      - 8765:8765
+    volumes:
+      - ./zuul-gateway-service:/usr/src/app
+    working_dir: /usr/src/app
+    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments=--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka
     depends_on:
-      - postgres
-      - eureka-discovery
-      - config
-      - zuul-gateway
-    links:
-      - postgres
+      - eureka-discovery-service
+    networks:
+      - sms
+
+  config-service:
+    container_name: config-service
+    image: openjdk:11.0.9.1-jdk
+    ports:
+      - 1000:1000
+    volumes:
+      - ./config-service:/usr/src/app
+    working_dir: /usr/src/app
+    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments=--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka
+    depends_on:
+      - eureka-discovery-service
+    networks:
+      - sms
+
+  authorization-service:
+    container_name: authorization-service
+    image: openjdk:11.0.9.1-jdk
     ports:
       - 1001:1001
+    volumes:
+      - ./authorization-service:/usr/src/app
+    working_dir: /usr/src/app
+    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments=--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka,--spring.cloud.config.uri=http://zuul-gateway-service:8765/config-service
+    depends_on:
+      - postgres
+      - eureka-discovery-service
+      - config-service
+      - zuul-gateway-service
+    networks:
+      - sms
+
+networks:
+  sms:
+    driver: bridge

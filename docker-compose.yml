@@ -55,7 +55,7 @@ services:
     volumes:
       - ./authorization-service:/usr/src/app
     working_dir: /usr/src/app
-    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments="--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka,--spring.cloud.config.uri=http://zuul-gateway-service:8765/config-service"
+    command: ./mvnw spring-boot:run
     depends_on:
       - postgres
       - eureka-discovery-service

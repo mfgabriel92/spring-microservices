@@ -10,8 +10,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: root
       POSTGRES_DB: spring_microservices
-    networks:
-      - sms
 
   eureka-discovery-service:
     container_name: eureka-discovery-service
@@ -22,8 +20,6 @@ services:
       - ./eureka-discovery-service:/usr/src/app
     working_dir: /usr/src/app
     command: ./mvnw spring-boot:run
-    networks:
-      - sms
 
   zuul-gateway-service:
     container_name: zuul-gateway-service
@@ -33,11 +29,9 @@ services:
     volumes:
       - ./zuul-gateway-service:/usr/src/app
     working_dir: /usr/src/app
-    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments=--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka
+    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments="--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka"
     depends_on:
       - eureka-discovery-service
-    networks:
-      - sms
 
   config-service:
     container_name: config-service
@@ -47,29 +41,23 @@ services:
     volumes:
       - ./config-service:/usr/src/app
     working_dir: /usr/src/app
-    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments=--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka
+    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments="--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka"
     depends_on:
       - eureka-discovery-service
-    networks:
-      - sms
 
   authorization-service:
     container_name: authorization-service
     image: openjdk:11.0.9.1-jdk
+    environment:
+      CONFIG_SERVICE: http://zuul-gateway-service:8765/config-service
     ports:
       - 1001:1001
     volumes:
       - ./authorization-service:/usr/src/app
     working_dir: /usr/src/app
-    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments=--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka,--spring.cloud.config.uri=http://zuul-gateway-service:8765/config-service
+    command: ./mvnw spring-boot:run -Dspring-boot.run.arguments="--eureka.client.serviceUrl.defaultZone=http://eureka-discovery-service:8761/eureka,--spring.cloud.config.uri=http://zuul-gateway-service:8765/config-service"
     depends_on:
       - postgres
       - eureka-discovery-service
-      - config-service
       - zuul-gateway-service
-    networks:
-      - sms
-
-networks:
-  sms:
-    driver: bridge
+      - config-service

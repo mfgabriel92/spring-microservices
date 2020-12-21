@@ -1,6 +1,7 @@
 package com.gabriel.zuulgatewayservice;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -30,8 +31,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
             .formLogin().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .authorizeRequests()
-                .antMatchers(USERS_URI).hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET, USERS_URI).hasRole("ADMIN")
                 .antMatchers(CONFIG_URI, OAUTH_URI).permitAll()
+                .antMatchers(HttpMethod.POST, USERS_URI).permitAll()
                 .anyRequest().authenticated().and()
             .oauth2ResourceServer()
                 .jwt()

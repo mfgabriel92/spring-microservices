@@ -1,6 +1,11 @@
 spring:
   application:
     name: config-service
+  datasource:
+    url: jdbc:postgresql://postgres:5432/spring_microservices
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: root
   cloud:
     config:
       server:
@@ -19,8 +24,8 @@ server:
   port: 0
 
 eureka:
-#  client:
-#    service-url:
-#      default-zone: http://localhost:8761/eureka
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
   instance:
     lease-renewal-interval-in-seconds: 10
